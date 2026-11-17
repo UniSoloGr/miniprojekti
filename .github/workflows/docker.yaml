@@ -35,4 +35,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ghcr.io/${{ github.repository }}:${{ github.event_name == 'push' && 'setup-okd' || 'latest' }}
+          tags: ghcr.io/unisologr/miniprojekti:${{ github.event_name == 'push' && 'setup-okd' || 'latest' }}
