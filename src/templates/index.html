@@ -17,4 +17,16 @@ block body %}
   <button type="submit">Search</button>
 </form>
 
+{% if books %}
+    <h3>Search results</h3>
+
+    {% for book in books %}
+        <div>
+            <h4>{{ book.title }}</h4>
+        </div>
+    {% endfor %}
+{% elif search_name %}
+    <p>No books found.</p>
+{% endif %}
+
 {% endblock %}
