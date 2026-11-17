@@ -28,6 +28,9 @@ jobs:
       - name: Install dependencies
         run: uv sync --dev
 
+      - name: Initialize Robot Framework Browser
+        run: uv run rfbrowser init
+
       - name: Install browser dependencies
         run: uv run rfbrowser install --with-deps chromium
 
