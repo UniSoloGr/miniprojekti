@@ -6,7 +6,7 @@ block body %}
 <h2>App</h2>
 
 <form method="get" role="search">
-  <label for="search-input">Search book</label>
+  <label for="search-input">Search sources</label>
   <input
     type="search"
     id="search-input"
@@ -17,16 +17,24 @@ block body %}
   <button type="submit">Search</button>
 </form>
 
-{% if books %}
+{% if search_name %}
     <h3>Search results</h3>
+{% elif sources %}
+    <h3>Sources</h3>
+{% endif %}
 
-    {% for book in books %}
+{% if sources %}
+    {% for source in sources %}
         <div>
-            <h4>{{ book.title }}</h4>
+            <h4>{{ source.content }}</h4>
         </div>
     {% endfor %}
 {% elif search_name %}
-    <p>No books found.</p>
+    <p>No sources found.</p>
 {% endif %}
+
+<div>
+  <a href="/new_source">Add a new source</a>
+</div>
 
 {% endblock %}

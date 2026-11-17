@@ -1,0 +1,16 @@
+{% extends "layout.html" %} {% block title %} BibTeX Fetcher {% endblock %} {%
+block body %}
+
+{% include "links.html" %}
+
+<h2>Sources</h2>
+
+{% for source in sources %}
+    <div>
+        <h4>{{ source.content }}</h4>
+    </div>
+{% else %}
+    <p>No sources yet.</p>
+{% endfor %}
+
+{% endblock %}
