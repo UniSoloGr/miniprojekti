@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Add a new source
+{% endblock %}
+
+{% block body %}
+
+<h2>Add a new source</h2>
+
+<form action="/add_source" method="post">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <ul>
+      {% for message in messages %}
+        <li>{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+  <textarea name="abstract" rows="5" cols="40" placeholder="Enter your notes or BibTeX abstract here..."></textarea>
+  <br>
+  <button type="submit">
+    Add
+  </button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "layout.html" %} {% block title %} BibTeX Fetcher {% endblock %} {%
+block body %}
+
+{% include "links.html" %}
+
+<h2>App</h2>
+
+<form method="get" role="search">
+  <label for="search-input">Search sources</label>
+  <input
+    type="search"
+    id="search-input"
+    name="q"
+    placeholder="Search..."
+    required
+  />
+  <button type="submit">Search</button>
+</form>
+
+{% if search_name %}
+    <h3>Search results</h3>
+{% elif sources %}
+    <h3>Sources</h3>
+{% endif %}
+
+{% if sources %}
+    {% for source in sources %}
+        <div>
+            <pre style="white-space: pre-wrap">{{ source.content }}</pre>
+        </div>
+    {% endfor %}
+{% elif search_name %}
+    <p>No sources found.</p>
+{% endif %}
+
+<div>
+  <a href="/new_source">Add a new source</a>
+</div>
+
+{% endblock %}
