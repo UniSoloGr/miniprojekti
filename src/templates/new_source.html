@@ -1,28 +1,91 @@
 {% extends "layout.html" %}
 
 {% block title %}
-Add a new source
+Add a new reference
 {% endblock %}
 
 {% block body %}
 
-<h2>Add a new source</h2>
+<h2>Add a new reference</h2>
 
 <form action="/add_source" method="post">
-  {% with messages = get_flashed_messages() %}
-    {% if messages %}
-      <ul>
-      {% for message in messages %}
-        <li>{{ message }}</li>
-      {% endfor %}
-      </ul>
-    {% endif %}
-  {% endwith %}
-  <textarea name="abstract" rows="5" cols="40" placeholder="Enter your notes or BibTeX abstract here..."></textarea>
-  <br>
-  <button type="submit">
-    Add
-  </button>
+    <label for="reference_type">Reference type:</label>
+    <select id="reference_type" name="reference_type">
+        <option value="book">Book</option>
+        <option value="article">Article</option>
+    </select>
+
+    <br><br>
+
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title" required>
+
+    <br><br>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" required>
+
+    <br><br>
+
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year">
+
+    <br><br>
+
+    <label for="publisher">Publisher:</label>
+    <input type="text" id="publisher" name="publisher">
+
+    <br><br>
+
+    <label for="isbn">ISBN:</label>
+    <input type="text" id="isbn" name="isbn">
+
+    <br><br>
+
+    <h3>Additional fields</h3>
+
+    <div id="custom-fields"></div>
+
+    <button type="button" id="add-field">
+        + Add custom field
+    </button>
+    <br><br>
+
+    <button type="submit">Add reference</button>
+
 </form>
+
+
+<script>
+    const addButton = document.getElementById("add-field");
+    const customFields = document.getElementById("custom-fields");
+
+    addButton.addEventListener("click", function() {
+        const field = document.createElement("div");
+
+        field.innerHTML = `
+            <input type="text"
+                   name="custom_field_names[]"
+                   placeholder="Field name"
+                   required>:
+
+            <input type="text"
+                   name="custom_field_values[]"
+                   placeholder=""
+                   required>
+
+            <button type="button" class="remove-field">
+                Remove
+            </button>
+        `;
+
+        field.querySelector(".remove-field").addEventListener("click", function() {
+            field.remove();
+        });
+
+        customFields.appendChild(field);
+    });
+</script>
+
 
 {% endblock %}

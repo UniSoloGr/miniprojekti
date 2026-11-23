@@ -19,4 +19,4 @@ for i in {1..30}; do
     sleep 1
 done
 
-uv run robot src/tests/app.robot
+uv run robot src/tests/

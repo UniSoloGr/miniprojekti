@@ -21,12 +21,34 @@ def new():
     return render_template("new_source.html")
 
 @app.route("/add_source", methods=["POST"])
-def source_addition():
-    content = request.form["abstract"]
+def add_source():
+    reference_type = request.form.get("reference_type", "book")
+    title = request.form.get("title", "").strip()
+    author = request.form.get("author", "").strip()
+    year = request.form.get("year", "").strip()
+    publisher = request.form.get("publisher", "").strip()
+    isbn = request.form.get("isbn", "").strip()
 
-    try:
-        create_source(content)
-        return redirect("/")
-    except Exception as error:
-        flash(str(error))
+    custom_names = request.form.getlist("custom_field_names[]")
+    custom_values = request.form.getlist("custom_field_values[]")
+
+    if not title or not author:
+        flash("Title and author are required")
         return redirect("/new_source")
+
+    # Temporary representation
+    content = (
+        f"Type: {reference_type}\n"
+        f"Title: {title}\n"
+        f"Author: {author}\n"
+        f"Year: {year}\n"
+        f"Publisher: {publisher}\n"
+        f"ISBN: {isbn}\n"
+    )
+
+    for name, value in zip(custom_names, custom_values):
+        if name.strip():
+            content += f"{name.strip()}: {value.strip()}\n"
+
+    create_source(content)
+    return redirect("/")
