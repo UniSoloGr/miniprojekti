@@ -5,12 +5,6 @@ block body %}
 
 <h2>Sources</h2>
 
-{% for source in sources %}
-    <div>
-        <pre style="white-space: pre-wrap">{{ source.content }}</pre>
-    </div>
-{% else %}
-    <p>No sources yet.</p>
-{% endfor %}
+{% include "source_list.html" %}
 
 {% endblock %}

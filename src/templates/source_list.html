@@ -1,9 +1,9 @@
-{% if sources %}
-    {% for source in sources %}
-        <div>
-            <pre style="white-space: pre-wrap">{{ source.content }}</pre>
-        </div>
-    {% endfor %}
-{% elif search_name %}
-    <p>No sources found.</p>
-{% endif %}
+{% for source in sources %}
+    <div style="background-color: #b7b6b6; border-radius: 4px; margin-bottom: 1rem; padding: 1rem;">
+        {% for name, value in source.fields %}
+            <div><strong>{{ name }}:</strong> {{ value }}</div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No sources yet.</p>
+{% endfor %}
