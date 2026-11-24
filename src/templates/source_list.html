@@ -1,0 +1,9 @@
+{% if sources %}
+    {% for source in sources %}
+        <div>
+            <pre style="white-space: pre-wrap">{{ source.content }}</pre>
+        </div>
+    {% endfor %}
+{% elif search_name %}
+    <p>No sources found.</p>
+{% endif %}

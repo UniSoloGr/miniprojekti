@@ -1,5 +1,4 @@
-{% extends "layout.html" %} {% block title %} BibTeX Fetcher {% endblock %} {%
-block body %}
+{% extends "layout.html" %} {% block title %} BibTeX Fetcher {% endblock %} {% block body %}
 
 {% include "links.html" %}
 
@@ -23,15 +22,7 @@ block body %}
     <h3>Sources</h3>
 {% endif %}
 
-{% if sources %}
-    {% for source in sources %}
-        <div>
-            <pre style="white-space: pre-wrap">{{ source.content }}</pre>
-        </div>
-    {% endfor %}
-{% elif search_name %}
-    <p>No sources found.</p>
-{% endif %}
+{% include "source_list.html" %}
 
 <div>
   <a href="/new_source">Add a new source</a>
