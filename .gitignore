@@ -13,3 +13,4 @@ possu.sh
 secret.env
 playwright-log.txt
 ref/
+tmp/
