@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, flash
 from repositories.source_repository import get_sources, create_source
 from config import app
+from datetime import datetime
 
 @app.route("/")
 def index():
@@ -36,6 +37,23 @@ def add_source():
         flash("Title and author are required")
         return redirect("/new_source")
 
+    try:
+        year_value = int(year)
+
+        current_year = datetime.now().year
+
+        if year_value > current_year:
+            flash("Year cannot be in the future")
+            return redirect("/new_source")
+
+        if year_value < 0:
+            flash("Year cannot be a negative number")
+            return redirect("/new_source")
+
+    except ValueError:
+        flash("Year must be a valid number")
+        return redirect("/new_source")
+    
     # Temporary representation
     content = (
         f"Type: {reference_type}\n"

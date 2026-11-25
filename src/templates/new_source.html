@@ -8,6 +8,15 @@ Add a new reference
 
 <h2>Add a new reference</h2>
 
+{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <div style="border-radius: 4px; margin-bottom: 1rem; padding: 1rem;"><strong>{{ message }}</strong></div>
+            <br><br>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
 <form action="/add_source" method="post">
     <label for="reference_type">Reference type:</label>
     <select id="reference_type" name="reference_type">
