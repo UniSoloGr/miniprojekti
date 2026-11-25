@@ -11,7 +11,7 @@ Add a new reference
 {% with messages = get_flashed_messages() %}
     {% if messages %}
         {% for message in messages %}
-            <div style="border-radius: 4px; margin-bottom: 1rem; padding: 1rem;"><strong>{{ message }}</strong></div>
+            <div><strong>{{ message }}</strong></div>
             <br><br>
         {% endfor %}
     {% endif %}
@@ -27,12 +27,12 @@ Add a new reference
     <br><br>
 
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title" required>
+    <input type="text" id="title" name="title">
 
     <br><br>
 
     <label for="author">Author:</label>
-    <input type="text" id="author" name="author" required>
+    <input type="text" id="author" name="author">
 
     <br><br>
 
